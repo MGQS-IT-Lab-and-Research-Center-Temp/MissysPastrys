@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using MissysPastrys.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MissysPastrysDbContext>(option =>
+    option.UseMySQL(builder.Configuration.GetConnectionString("MissysPastrysDbContext")));
 
 var app = builder.Build();
 
