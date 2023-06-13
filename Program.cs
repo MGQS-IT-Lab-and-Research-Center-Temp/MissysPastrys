@@ -1,9 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using MissysPastrys.Context;
+using MissysPastrys.Repository.Implementations;
+using MissysPastrys.Repository.Interfaces;
+using MissysPastrys.Service.Implementations;
+using MissysPastrys.Service.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPastryRepository, PastryRepository>();
+
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MissysPastrysDbContext>(option =>

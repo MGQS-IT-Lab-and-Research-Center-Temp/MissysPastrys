@@ -1,6 +1,8 @@
-﻿namespace MissysPastrys.Service.Implementations
+﻿using MissysPastrys.Service.Interfaces;
+
+namespace MissysPastrys.Service.Implementations
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
     }
 }
