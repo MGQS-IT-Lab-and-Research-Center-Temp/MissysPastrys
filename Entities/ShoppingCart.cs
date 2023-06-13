@@ -2,7 +2,7 @@
 
 namespace MissysPastrys.Entities
 {
-    public class ShoppingCart : BaseEntity
+    public class ShoppingCart
     {
         private readonly MissysPastrysDbContext _missysPastrysDbContext;
         public ShoppingCart(MissysPastrysDbContext missysPastrysDbContext)
