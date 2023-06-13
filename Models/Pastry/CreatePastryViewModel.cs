@@ -12,7 +12,7 @@ namespace MissysPastrys.Models.Pastry
         public string ShortDescription { get; set; }
 
         [Required]
-        public string ImageThumbUrl { get; set; }
+        public string ImageThumbnailUrl { get; set; }
 
         [Required(ErrorMessage = "Cost price is required!")]
         [DataType(DataType.Currency)]

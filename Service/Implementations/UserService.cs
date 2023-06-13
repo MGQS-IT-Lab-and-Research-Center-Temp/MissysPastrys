@@ -1,5 +1,7 @@
-﻿using MissysPastries.Models;
+﻿using MissysPastries.Helper;
+using MissysPastries.Models;
 using MissysPastries.Models.Auth;
+using MissysPastrys.Entities;
 using MissysPastrys.Models.User;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;
@@ -72,12 +74,93 @@ namespace MissysPastrys.Service.Implementations
 
         public UserResponseModel Login(LoginViewModel request)
         {
-            throw new NotImplementedException();
+            var response = new UserResponseModel();
+
+            try
+            {
+                var user = _unitOfWork.Users.GetUser(c => c.UserName.ToLower() == request.UserName.ToLower());
+
+                if (user is null)
+                {
+                    response.Message = "User account does not exist!";
+                    return response;
+                }
+
+                string hashedPassword = HashingHelper.HashPassword(request.Password, user.HashSalt);
+
+                if (!user.PasswordHash.Equals(hashedPassword))
+                {
+                    response.Message = "Incorrect username or password!";
+                    return response;
+                }
+
+                response.User = new UserViewModel
+                {
+                    Id = user.Id,
+                    UserName = user.UserName
+                };
+                response.Message = $"Welcome {user.UserName}";
+                response.Status = true;
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Message = $"An error occured: {ex.Message}";
+                return response;
+            }
         }
 
         public BaseResponseModel Register(SignUpViewModel request, string roleName)
         {
-            throw new NotImplementedException();
+
+            var response = new BaseResponseModel();
+            string saltString = HashingHelper.GenerateSalt();
+            string hashedPassword = HashingHelper.HashPassword(request.Password, saltString);
+            var createdBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            var userExist = _unitOfWork.Users.Exists(c => c.UserName == request.UserName);
+
+            if (userExist)
+            {
+                response.Message = $"User with username {request.UserName} already exists!";
+                return response;
+            }
+
+            roleName ??= "Pastry Shopper";
+
+            var role = _unitOfWork.Roles.Get(r => r.RoleName == roleName);
+
+            if (role is null)
+            {
+                response.Message = "Role does not exist!";
+                return response;
+            }
+
+            var user = new User
+            {
+                UserName = request.UserName,
+                HashSalt = saltString,
+                PasswordHash = hashedPassword,
+                RoleId = role.Id,
+                CreatedBy = createdBy
+            };
+
+            try
+            {
+                _unitOfWork.Users.Create(user);
+                _unitOfWork.SaveChanges();
+                response.Status = true;
+                response.Message = "You have successfully signed up on Missy's Pastrys";
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponseModel
+                {
+                    Message = $"Unable to signup, an error occurred: {ex.Message}"
+                };
+            }
         }
     }
 }

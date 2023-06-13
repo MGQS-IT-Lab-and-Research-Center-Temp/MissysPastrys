@@ -11,7 +11,7 @@ namespace MissysPastrys.Models.Pastry
         public string LongDescription { get; set; }
         public string ImageUrl { get; set; }
         public string ShortDescription { get; set; }
-        public string ImageThumbUrl { get; set; }
+        public string ImageThumbnailUrl { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal CostPrice { get; set; }
