@@ -10,4 +10,5 @@ namespace MissysPastrys.Models.ShoppingCartItem
     public class ShoppingCartItemsResponseModel : BaseResponseModel
     {
         public List<ShoppingCartItemViewModel> ShoppingCartItem { get; set; }
+    }
 }
