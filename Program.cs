@@ -11,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IDeliveryRepository, DeliveryRepository>();
+builder.Services.AddScoped<IDeliveryService, DeliveryService>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPastryRepository, PastryRepository>();
@@ -28,6 +31,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<MissysPastrysDbContext>(option =>
     option.UseMySQL(builder.Configuration.GetConnectionString("MissysPastrysDbContext")));
+builder.Services.AddScoped<DbInitializer>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -43,7 +47,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.SeedToDatabase();
 app.UseRouting();
 
 app.UseAuthorization();

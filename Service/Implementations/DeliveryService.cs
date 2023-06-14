@@ -1,6 +1,9 @@
-﻿namespace MissysPastrys.Service.Implementations
+﻿
+using MissysPastrys.Service.Interfaces;
+
+namespace MissysPastrys.Service.Implementations
 {
-    public class DeliveryService
+    public class DeliveryService : IDeliveryService
     {
     }
 }
