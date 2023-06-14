@@ -40,7 +40,7 @@ namespace MissysPastrys.Service.Implementations
             {
                 Name = request.Name,
                 ShortDescription = request.ShortDescription,
-                ImageThumbnailUrl = request.ImageThumbUrl,
+                ImageThumbnailUrl = request.ImageThumbnailUrl,
                 SellingPrice = request.SellingPrice,
                 CostPrice = request.CostPrice,
                 LongDescription = request.LongDescription,
@@ -136,7 +136,7 @@ namespace MissysPastrys.Service.Implementations
                         Id = pastry.Id,
                         Name = pastry.Name,
                         ShortDescription = pastry.ShortDescription,
-                        ImageThumbUrl = pastry.ImageThumbnailUrl,
+                        ImageThumbnailUrl = pastry.ImageThumbnailUrl,
                         SellingPrice = pastry.SellingPrice
                     }).ToList();
 
@@ -174,7 +174,7 @@ namespace MissysPastrys.Service.Implementations
                         Name = pastry.Name,
                         ShortDescription = pastry.ShortDescription,
                         SellingPrice = pastry.SellingPrice,
-                        ImageThumbUrl = pastry.ImageThumbUrl
+                        ImageThumbnailUrl = pastry.ImageThumbnailUrl
                     }).ToList();
             }
             catch (Exception ex)

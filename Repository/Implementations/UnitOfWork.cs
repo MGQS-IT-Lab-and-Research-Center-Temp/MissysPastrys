@@ -15,8 +15,6 @@ namespace MissysPastrys.Repository.Implementations
         public IDeliveryRepository Deliveries { get; }
         public IOrderRepository Orders { get; }
         public IOrderDetailRepository OrderDetails { get; }
-        public IShoppingCartItemRepository ShoppingCartItems { get; }
-        public IShoppingCartRepository ShoppingCarts { get; }
         public IReviewRepository Reviews { get; }
 
         public UnitOfWork(
@@ -28,8 +26,6 @@ namespace MissysPastrys.Repository.Implementations
             IDeliveryRepository deliveryRepository,
             IOrderRepository orderRepository,
             IOrderDetailRepository orderDetailRepository,
-            IShoppingCartItemRepository shoppingCartItemRepository,
-            IShoppingCartRepository shoppingCartRepository,
             IReviewRepository reviewRepository)
         {
             _context = context;
@@ -40,8 +36,6 @@ namespace MissysPastrys.Repository.Implementations
             Deliveries = deliveryRepository;
             Orders = orderRepository;
             OrderDetails = orderDetailRepository;
-            ShoppingCartItems = shoppingCartItemRepository;
-            ShoppingCarts = shoppingCartRepository;
             Reviews = reviewRepository;
         }
 

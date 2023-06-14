@@ -1,4 +1,5 @@
 ﻿using MissysPastrys.Entities;
+using MissysPastrys.Models.Order;
 
 namespace MissysPastrys.Repository.Interfaces
 {

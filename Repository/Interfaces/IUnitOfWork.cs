@@ -9,8 +9,6 @@
         IDeliveryRepository Deliveries { get; }
         IOrderRepository Orders { get; }
         IOrderDetailRepository OrderDetails { get; }
-        IShoppingCartItemRepository ShoppingCartItems { get; }
-        IShoppingCartRepository ShoppingCarts { get; }
         IReviewRepository Reviews { get; }
         int SaveChanges();
     }

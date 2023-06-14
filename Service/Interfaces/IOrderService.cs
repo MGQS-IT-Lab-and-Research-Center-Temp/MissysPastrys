@@ -1,14 +1,9 @@
-﻿using MissysPastries.Models;
-using MissysPastrys.Models.Order;
+﻿using MissysPastrys.Entities;
 
 namespace MissysPastrys.Service.Interfaces
 {
     public interface IOrderService
     {
-        BaseResponseModel CreateOrder(CreateOrderViewModel request);
-        BaseResponseModel DeleteOrder(string orderId);
-        BaseResponseModel UpdateOrder(UpdateOrderViewModel request, string orderId);
-        OrderResponseModel GetOrder(string orderId);
-        OrdersResponseModel GetAllOrder();
+        public void CreateOrder(Order order);
     }
 }

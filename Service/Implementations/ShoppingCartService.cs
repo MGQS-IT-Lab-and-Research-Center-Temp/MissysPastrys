@@ -55,7 +55,7 @@ namespace MissysPastrys.Service.Implementations
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
             session.SetString("CartId", cartId);
 
-            return new ShoppingCart(context) { Id = cartId };
+            return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
 
         public List<ShoppingCartItem> GetShoppingCartItems()
