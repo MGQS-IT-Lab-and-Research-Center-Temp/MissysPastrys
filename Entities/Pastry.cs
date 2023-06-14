@@ -9,6 +9,8 @@
         public string ImageUrl { get; set; }
         public decimal SellingPrice { get; set; }
         public decimal CostPrice { get; set; }
+        public string OrderId { get; set; }
+        public Order Order { get; set; }
         public List<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<PastryCategory> PastryCategories { get; set; } = new HashSet<PastryCategory>();
     }
