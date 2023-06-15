@@ -1,5 +1,4 @@
-﻿
-using MissysPastrys.Service.Interfaces;
+﻿using MissysPastrys.Service.Interfaces;
 
 namespace MissysPastrys.Service.Implementations
 {

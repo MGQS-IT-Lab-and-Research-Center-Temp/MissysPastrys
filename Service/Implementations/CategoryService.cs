@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MissysPastries.Models;
-using MissysPastries.Models.Category;
 using MissysPastrys.Entities;
+using MissysPastrys.Models;
+using MissysPastrys.Models.Category;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;
 

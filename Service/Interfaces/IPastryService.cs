@@ -1,4 +1,4 @@
-﻿using MissysPastries.Models;
+﻿using MissysPastrys.Models;
 using MissysPastrys.Models.Pastry;
 
 namespace MissysPastrys.Service.Interfaces

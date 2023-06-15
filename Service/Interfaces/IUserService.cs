@@ -1,6 +1,6 @@
-﻿using MissysPastries.Models.Auth;
-using MissysPastries.Models;
-using MissysPastrys.Models.User;
+﻿using MissysPastrys.Models.User;
+using MissysPastrys.Models;
+using MissysPastrys.Models.Auth;
 
 namespace MissysPastrys.Service.Interfaces
 {

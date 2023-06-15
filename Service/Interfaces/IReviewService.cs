@@ -1,5 +1,5 @@
-﻿using MissysPastries.Models.Review;
-using MissysPastries.Models;
+﻿using MissysPastrys.Models;
+using MissysPastrys.Models.Review;
 
 namespace MissysPastrys.Service.Interfaces
 {

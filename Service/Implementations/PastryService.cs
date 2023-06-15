@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
-using MissysPastries.Models;
 using MissysPastrys.Entities;
+using MissysPastrys.Models;
 using MissysPastrys.Models.Pastry;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;

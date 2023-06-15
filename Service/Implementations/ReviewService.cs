@@ -1,6 +1,6 @@
-﻿using MissysPastries.Models;
-using MissysPastries.Models.Review;
-using MissysPastrys.Entities;
+﻿using MissysPastrys.Entities;
+using MissysPastrys.Models;
+using MissysPastrys.Models.Review;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;
 using System.Security.Claims;

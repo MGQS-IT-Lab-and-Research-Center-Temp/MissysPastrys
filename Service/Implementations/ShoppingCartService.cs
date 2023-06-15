@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MissysPastrys.Context;
 using MissysPastrys.Entities;
-using MissysPastrys.Models.ShoppingCartItem;
 using MissysPastrys.Service.Interfaces;
 
 namespace MissysPastrys.Service.Implementations

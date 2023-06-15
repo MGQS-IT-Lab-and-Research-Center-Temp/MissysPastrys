@@ -1,6 +1,4 @@
-﻿using MissysPastries.Models;
-using MissysPastrys.Entities;
-using MissysPastrys.Models.ShoppingCartItem;
+﻿using MissysPastrys.Entities;
 
 namespace MissysPastrys.Service.Interfaces
 {

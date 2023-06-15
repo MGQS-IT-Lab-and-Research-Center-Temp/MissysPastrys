@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MissysPastries.Models.Category;
-using MissysPastries.Models;
+using MissysPastrys.Models;
+using MissysPastrys.Models.Category;
 
 namespace MissysPastrys.Service.Interfaces
 {

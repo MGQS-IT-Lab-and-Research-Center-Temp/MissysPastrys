@@ -1,7 +1,7 @@
 ﻿using MissysPastries.Helper;
-using MissysPastries.Models;
-using MissysPastries.Models.Auth;
 using MissysPastrys.Entities;
+using MissysPastrys.Models;
+using MissysPastrys.Models.Auth;
 using MissysPastrys.Models.User;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;

@@ -1,5 +1,5 @@
-﻿using MissysPastries.Models.Role;
-using MissysPastries.Models;
+﻿using MissysPastrys.Models;
+using MissysPastrys.Models.Role;
 
 namespace MissysPastrys.Service.Interfaces
 {
