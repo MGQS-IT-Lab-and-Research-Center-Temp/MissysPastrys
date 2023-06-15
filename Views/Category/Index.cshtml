@@ -28,15 +28,10 @@
                     <td>@item.Name</td>
                     <td>@item.Description</td>
                     <td>
-                        @*<div class="btn-group">
-                            <a asp-controller="Product" asp-action="GetProductByCategoryId" asp-route-id ="@item.Id" class="btn btn-primary">View Products</a>
-                        </div>*@
+                        <div class="btn-group">
+                            <a asp-controller="Pastry" asp-action="GetPastryByCategoryId" asp-route-id ="@item.Id" class="btn btn-primary">View Pastries</a>
+                        </div>
                     </td>
-                    @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>*@
                 </tr>
                 count++;
             }
