@@ -14,13 +14,25 @@ namespace MissysPastrys.Controllers
     {
         private readonly IUserService _userService;
         private readonly INotyfService _notyf;
+        private readonly IPastryService _pastryService;
 
-        public HomeController(IUserService userService, INotyfService notyf)
+        public HomeController(IUserService userService, INotyfService notyf, IPastryService pastryService)
         {
             _userService = userService;
             _notyf = notyf;
+            _pastryService = pastryService;
         }
 
+        [Authorize]
+        public IActionResult Index()
+        {
+            var pastries = _pastryService.DisplayPastry();
+            ViewData["Message"] = pastries.Message;
+            ViewData["Status"] = pastries.Status;
+
+            return View(pastries.Pastry);
+        }
+        
         public IActionResult SignUp()
         {
             return View();
