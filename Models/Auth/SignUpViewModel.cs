@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MissysPastries.Models.Auth
+namespace MissysPastrys.Models.Auth
 {
     public class SignUpViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace MissysPastries.Models
+﻿namespace MissysPastrys.Models
 {
     public class BaseResponseModel
     {

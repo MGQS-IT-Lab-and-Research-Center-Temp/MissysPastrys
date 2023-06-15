@@ -1,4 +1,4 @@
-﻿namespace MissysPastries.Models.Review
+﻿namespace MissysPastrys.Models.Review
 {
     public class ReviewResponseModel : BaseResponseModel
     {

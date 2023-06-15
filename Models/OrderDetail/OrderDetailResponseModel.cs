@@ -1,6 +1,4 @@
-﻿using MissysPastries.Models;
-
-namespace MissysPastrys.Models.OrderDetail
+﻿namespace MissysPastrys.Models.OrderDetail
 {
     public class OrderDetailResponseModel : BaseResponseModel
     {

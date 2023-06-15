@@ -1,7 +1,7 @@
 ﻿using MissysPastrys.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace MissysPastries.Models.Review
+namespace MissysPastrys.Models.Review
 {
     public class UpdateReviewViewModel
     {

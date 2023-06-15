@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace MissysPastries.Models.Role
+namespace MissysPastrys.Models.Role
 {
     public class UpdateRoleViewModel
     {

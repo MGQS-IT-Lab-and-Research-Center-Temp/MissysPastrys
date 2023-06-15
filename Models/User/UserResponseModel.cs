@@ -1,6 +1,4 @@
-﻿using MissysPastries.Models;
-
-namespace MissysPastrys.Models.User
+﻿namespace MissysPastrys.Models.User
 {
     public class UserResponseModel : BaseResponseModel 
     {

@@ -1,6 +1,6 @@
 ﻿using MissysPastrys.Enum;
 
-namespace MissysPastries.Models.Review
+namespace MissysPastrys.Models.Review
 {
     public class ReviewViewModel
     {

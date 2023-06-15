@@ -1,6 +1,4 @@
-﻿using MissysPastries.Models;
-
-namespace MissysPastrys.Models.ShoppingCart
+﻿namespace MissysPastrys.Models.ShoppingCart
 {
     public class ShoppingCartResponseModel : BaseResponseModel
     {

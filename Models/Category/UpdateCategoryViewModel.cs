@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MissysPastries.Models.Category
+namespace MissysPastrys.Models.Category
 {
     public class UpdateCategoryViewModel
     {

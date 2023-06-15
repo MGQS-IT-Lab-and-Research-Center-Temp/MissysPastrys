@@ -1,4 +1,4 @@
-﻿namespace MissysPastries.Models.Category
+﻿namespace MissysPastrys.Models.Category
 {
     public class CategoryResponseModel : BaseResponseModel
     {

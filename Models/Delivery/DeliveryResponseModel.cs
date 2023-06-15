@@ -1,6 +1,4 @@
-﻿using MissysPastries.Models;
-
-namespace MissysPastrys.Models.Delivery
+﻿namespace MissysPastrys.Models.Delivery
 {
     public class DeliveryResponseModel : BaseResponseModel
     {

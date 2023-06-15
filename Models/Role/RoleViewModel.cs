@@ -1,4 +1,4 @@
-﻿namespace MissysPastries.Models.Role
+﻿namespace MissysPastrys.Models.Role
 {
     public class RoleViewModel
     {
