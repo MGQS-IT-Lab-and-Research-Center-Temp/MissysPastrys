@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MissysPastries.Models.Category.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Category List";
+    int count = 1;
+}
+
+<div>
+    <a asp-controller="Category" asp-action="CreateCategory" class="btn btn-outline-primary">Create New Category</a>
+</div>
+
+@if (Model is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">@count</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @*<div class="btn-group">
+                            <a asp-controller="Product" asp-action="GetProductByCategoryId" asp-route-id ="@item.Id" class="btn btn-primary">View Products</a>
+                        </div>*@
+                    </td>
+                    @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>*@
+                </tr>
+                count++;
+            }
+        </tbody>
+    </table>
+}
