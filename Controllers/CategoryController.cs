@@ -1,7 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MissysPastries.Models.Category;
+using MissysPastrys.Models.Category;
 using MissysPastrys.Service.Interfaces;
 
 namespace MissysPastrys.Controllers
