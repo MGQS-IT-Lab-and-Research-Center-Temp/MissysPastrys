@@ -1,3 +1,6 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using MissysPastrys.Context;
 using MissysPastrys.Entities;
@@ -31,10 +34,24 @@ builder.Services.AddScoped<ShoppingCart>();
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddNotyf(config =>
+{
+    config.DurationInSeconds = 10;
+    config.IsDismissable = true;
+    config.Position = NotyfPosition.TopRight;
+});
 
 builder.Services.AddDbContext<MissysPastrysDbContext>(option =>
     option.UseMySQL(builder.Configuration.GetConnectionString("MissysPastrysDbContext")));
 builder.Services.AddScoped<DbInitializer>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(config =>
+{
+    config.LoginPath = "/home/login";
+    config.Cookie.Name = "MissysPastrys";
+    config.ExpireTimeSpan = TimeSpan.FromHours(1);
+    config.AccessDeniedPath = "/home/privacy";
+});
 
 builder.Services.AddHttpContextAccessor();
 
@@ -44,7 +61,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -53,11 +69,12 @@ app.UseStaticFiles();
 app.SeedToDatabase();
 app.UseRouting();
 app.UseSession();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseNotyf();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

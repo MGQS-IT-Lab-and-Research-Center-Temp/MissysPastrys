@@ -8,7 +8,7 @@ namespace MissysPastrys.Service.Interfaces
     {
         BaseResponseModel DeleteUser(string userName);
         UserResponseModel GetUser(string userId);
-        BaseResponseModel Register(SignUpViewModel request, string roleName);
+        BaseResponseModel Register(SignUpViewModel request, string roleName = null);
         UserResponseModel Login(LoginViewModel request);
     }
 }
