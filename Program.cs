@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MissysPastrys.Context;
+using MissysPastrys.Entities;
 using MissysPastrys.Repository.Implementations;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Implementations;
@@ -25,7 +26,9 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ShoppingCart>();
 
+builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
@@ -49,6 +52,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.SeedToDatabase();
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

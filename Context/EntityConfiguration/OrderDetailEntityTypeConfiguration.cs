@@ -13,14 +13,14 @@ namespace MissysPastrys.Context.EntityConfiguration
 
             builder.HasKey(od => od.Id);
 
-            builder.Property(od => od.Pastry)
-                .IsRequired();
+            //builder.Property(od => od.Pastry)
+            //    .IsRequired();
 
             builder.Property(od => od.Amount)
                 .IsRequired();
 
-            builder.Property(od => od.Order)
-                .IsRequired();
+            //builder.Property(od => od.Order)
+            //    .IsRequired();
 
             builder.Property(od => od.SellingPrice)
                 .IsRequired();

@@ -11,8 +11,8 @@ using MissysPastrys.Context;
 namespace MissysPastrys.Migrations
 {
     [DbContext(typeof(MissysPastrysDbContext))]
-    [Migration("20230611201131_Primo")]
-    partial class Primo
+    [Migration("20230614135243_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,8 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -40,7 +41,8 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -54,7 +56,10 @@ namespace MissysPastrys.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.HasIndex("CategoryName")
+                        .IsUnique();
+
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Delivery", b =>
@@ -75,7 +80,7 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("DeliveryGroup")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -87,18 +92,18 @@ namespace MissysPastrys.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("ShoppingCartItemId")
+                    b.Property<string>("ShoppingCartId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShoppingCartItemId");
+                    b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("Deliveries");
+                    b.ToTable("Deliveries", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Order", b =>
@@ -171,7 +176,7 @@ namespace MissysPastrys.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.OrderDetail", b =>
@@ -219,7 +224,7 @@ namespace MissysPastrys.Migrations
 
                     b.HasIndex("PastryId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetailss", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Pastry", b =>
@@ -239,11 +244,11 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("ImageThumbnailUrl")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -253,7 +258,7 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("LongDescription")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.Property<string>("ModifiedBy")
                         .IsRequired()
@@ -261,9 +266,11 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("OrderId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<decimal>("SellingPrice")
@@ -271,22 +278,24 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Pastries");
+                    b.ToTable("Pastries", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.PastryCategory", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("PastryId")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
@@ -306,17 +315,11 @@ namespace MissysPastrys.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("PastryId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
+                    b.HasKey("PastryId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("PastryId");
-
-                    b.ToTable("PastryCategories");
+                    b.ToTable("PastryCategories", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Review", b =>
@@ -345,12 +348,13 @@ namespace MissysPastrys.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                    b.Property<short>("Rating")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("ReviewText")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(500)
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -362,7 +366,7 @@ namespace MissysPastrys.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Role", b =>
@@ -379,7 +383,8 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -393,38 +398,25 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.HasIndex("RoleName")
+                        .IsUnique();
+
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.ShoppingCart", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ShoppingCartId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.HasKey("ShoppingCartId");
 
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("LastModified")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCart", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.ShoppingCartItem", b =>
@@ -466,7 +458,7 @@ namespace MissysPastrys.Migrations
 
                     b.HasIndex("ShoppingCartId");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.ToTable("ShoppingCartItems", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.User", b =>
@@ -505,24 +497,25 @@ namespace MissysPastrys.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Delivery", b =>
                 {
-                    b.HasOne("MissysPastrys.Entities.ShoppingCartItem", "ShoppingCartItem")
+                    b.HasOne("MissysPastrys.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany()
-                        .HasForeignKey("ShoppingCartItemId")
+                        .HasForeignKey("ShoppingCartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ShoppingCartItem");
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.Order", b =>
@@ -557,9 +550,13 @@ namespace MissysPastrys.Migrations
 
             modelBuilder.Entity("MissysPastrys.Entities.Pastry", b =>
                 {
-                    b.HasOne("MissysPastrys.Entities.Order", null)
+                    b.HasOne("MissysPastrys.Entities.Order", "Order")
                         .WithMany("Pastries")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.PastryCategory", b =>
@@ -608,13 +605,15 @@ namespace MissysPastrys.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MissysPastrys.Entities.ShoppingCart", null)
+                    b.HasOne("MissysPastrys.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("ShoppingCartItems")
                         .HasForeignKey("ShoppingCartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Pastry");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("MissysPastrys.Entities.User", b =>

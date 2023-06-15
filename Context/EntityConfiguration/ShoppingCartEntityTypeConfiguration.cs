@@ -8,7 +8,7 @@ namespace MissysPastrys.Context.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<ShoppingCart> builder)
         {
-            builder.ToTable("ShoppingCartItems");
+            builder.ToTable("ShoppingCart");
 
             builder.HasKey(sc => sc.ShoppingCartId);
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MissysPastrys.Migrations
 {
     /// <inheritdoc />
-    public partial class Primo : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace MissysPastrys.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    CategoryName = table.Column<string>(type: "longtext", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    CategoryName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false),
                     ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -38,8 +38,8 @@ namespace MissysPastrys.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    RoleName = table.Column<string>(type: "longtext", nullable: false),
-                    Description = table.Column<string>(type: "longtext", nullable: false),
+                    RoleName = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false),
                     ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -53,19 +53,14 @@ namespace MissysPastrys.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ShoppingCarts",
+                name: "ShoppingCart",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    ShoppingCartId = table.Column<string>(type: "varchar(255)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.PrimaryKey("PK_ShoppingCart", x => x.ShoppingCartId);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -74,7 +69,7 @@ namespace MissysPastrys.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    UserName = table.Column<string>(type: "longtext", nullable: false),
+                    UserName = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     HashSalt = table.Column<string>(type: "longtext", nullable: false),
                     PasswordHash = table.Column<string>(type: "longtext", nullable: false),
                     RoleId = table.Column<string>(type: "varchar(255)", nullable: false),
@@ -92,6 +87,33 @@ namespace MissysPastrys.Migrations
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Deliveries",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255)", nullable: false),
+                    ShoppingCartId = table.Column<string>(type: "varchar(255)", nullable: false),
+                    DeliveryGroup = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<short>(type: "smallint", nullable: false),
+                    DeliveryAddress = table.Column<string>(type: "longtext", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Deliveries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Deliveries_ShoppingCart_ShoppingCartId",
+                        column: x => x.ShoppingCartId,
+                        principalTable: "ShoppingCart",
+                        principalColumn: "ShoppingCartId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
@@ -136,14 +158,14 @@ namespace MissysPastrys.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    Name = table.Column<string>(type: "longtext", nullable: false),
-                    ShortDescription = table.Column<string>(type: "longtext", nullable: false),
-                    ImageThumbnailUrl = table.Column<string>(type: "longtext", nullable: false),
-                    LongDescription = table.Column<string>(type: "longtext", nullable: false),
-                    ImageUrl = table.Column<string>(type: "longtext", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    ShortDescription = table.Column<string>(type: "text", nullable: false),
+                    ImageThumbnailUrl = table.Column<string>(type: "varchar(255)", nullable: false),
+                    LongDescription = table.Column<string>(type: "text", nullable: false),
+                    ImageUrl = table.Column<string>(type: "varchar(255)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CostPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OrderId = table.Column<string>(type: "varchar(255)", nullable: true),
+                    OrderId = table.Column<string>(type: "varchar(255)", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false),
                     ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -157,12 +179,13 @@ namespace MissysPastrys.Migrations
                         name: "FK_Pastries_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "OrderDetails",
+                name: "OrderDetailss",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
@@ -179,15 +202,15 @@ namespace MissysPastrys.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetails", x => x.Id);
+                    table.PrimaryKey("PK_OrderDetailss", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Orders_OrderId",
+                        name: "FK_OrderDetailss_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Pastries_PastryId",
+                        name: "FK_OrderDetailss_Pastries_PastryId",
                         column: x => x.PastryId,
                         principalTable: "Pastries",
                         principalColumn: "Id",
@@ -199,7 +222,6 @@ namespace MissysPastrys.Migrations
                 name: "PastryCategories",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     CategoryId = table.Column<string>(type: "varchar(255)", nullable: false),
                     PastryId = table.Column<string>(type: "varchar(255)", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false),
@@ -210,7 +232,7 @@ namespace MissysPastrys.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PastryCategories", x => x.Id);
+                    table.PrimaryKey("PK_PastryCategories", x => new { x.PastryId, x.CategoryId });
                     table.ForeignKey(
                         name: "FK_PastryCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -233,8 +255,8 @@ namespace MissysPastrys.Migrations
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     UserId = table.Column<string>(type: "varchar(255)", nullable: false),
                     PastryId = table.Column<string>(type: "varchar(255)", nullable: false),
-                    ReviewText = table.Column<string>(type: "longtext", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
+                    ReviewText = table.Column<string>(type: "text", maxLength: 500, nullable: false),
+                    Rating = table.Column<short>(type: "smallint", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false),
                     ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -283,60 +305,45 @@ namespace MissysPastrys.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShoppingCartItems_ShoppingCarts_ShoppingCartId",
+                        name: "FK_ShoppingCartItems_ShoppingCart_ShoppingCartId",
                         column: x => x.ShoppingCartId,
-                        principalTable: "ShoppingCarts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Deliveries",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false),
-                    ShoppingCartItemId = table.Column<string>(type: "varchar(255)", nullable: false),
-                    DeliveryGroup = table.Column<string>(type: "longtext", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    DeliveryAddress = table.Column<string>(type: "longtext", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "longtext", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Deliveries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Deliveries_ShoppingCartItems_ShoppingCartItemId",
-                        column: x => x.ShoppingCartItemId,
-                        principalTable: "ShoppingCartItems",
-                        principalColumn: "Id",
+                        principalTable: "ShoppingCart",
+                        principalColumn: "ShoppingCartId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deliveries_ShoppingCartItemId",
+                name: "IX_Categories_CategoryName",
+                table: "Categories",
+                column: "CategoryName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Deliveries_ShoppingCartId",
                 table: "Deliveries",
-                column: "ShoppingCartItemId");
+                column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderId",
-                table: "OrderDetails",
+                name: "IX_OrderDetailss_OrderId",
+                table: "OrderDetailss",
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_PastryId",
-                table: "OrderDetails",
+                name: "IX_OrderDetailss_PastryId",
+                table: "OrderDetailss",
                 column: "PastryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pastries_Name",
+                table: "Pastries",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pastries_OrderId",
@@ -349,11 +356,6 @@ namespace MissysPastrys.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PastryCategories_PastryId",
-                table: "PastryCategories",
-                column: "PastryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_PastryId",
                 table: "Reviews",
                 column: "PastryId");
@@ -362,6 +364,12 @@ namespace MissysPastrys.Migrations
                 name: "IX_Reviews_UserId",
                 table: "Reviews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Roles_RoleName",
+                table: "Roles",
+                column: "RoleName",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItems_PastryId",
@@ -386,7 +394,7 @@ namespace MissysPastrys.Migrations
                 name: "Deliveries");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
+                name: "OrderDetailss");
 
             migrationBuilder.DropTable(
                 name: "PastryCategories");
@@ -404,7 +412,7 @@ namespace MissysPastrys.Migrations
                 name: "Pastries");
 
             migrationBuilder.DropTable(
-                name: "ShoppingCarts");
+                name: "ShoppingCart");
 
             migrationBuilder.DropTable(
                 name: "Orders");

@@ -13,8 +13,8 @@ namespace MissysPastrys.Context.EntityConfiguration
 
             builder.HasKey(d => d.Id);
 
-            builder.Property(d => d.ShoppingCart)
-                .IsRequired();
+            //builder.Property(d => d.ShoppingCart)
+            //    .IsRequired();
 
             builder.Property(d => d.DeliveryGroup)
                 .HasColumnType("text")
