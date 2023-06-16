@@ -1,0 +1,31 @@
+﻿@model MissysPastrys.Models.Auth.SignUpViewModel
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<div class="d-flex justify-content-center">
+    <form asp-action="SignUp" class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="UserName" class="form-label">Username:</label>
+            <input type="text" class="form-control" placeholder="Enter Username" asp-for="UserName"/>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+        <label asp-for="Password" class="form-label">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter Password" asp-for="Password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="ConfirmPassword" class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control" placeholder="Confirm Password" asp-for="ConfirmPassword"/>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+    
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">SignUp</button>
+        </div>
+    </form>
+</div>
