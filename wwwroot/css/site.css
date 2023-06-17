@@ -1,3 +1,56 @@
+/*#cartButton {
+    margin-right: 8px;
+}
+
+nav {
+    padding: 8px;
+}
+
+.checkoutForm {
+    margin-top: 5%;
+}
+
+.orderForm {
+    margin-top: 5%;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #2fa4e7;
+}
+
+a.remove {
+    text-decoration: none;
+}
+
+a.remove.hover {
+    color: blue;
+}
+
+.center-div {
+    margin: 0 auto;
+    width: 80%
+}
+
+.marginTop {
+    margin-top: 5%;
+}
+
+.marginTop1 {
+    margin-top: 2%
+}
+
+.formPullRightButton {
+    margin-right: 10px !important
+}
+
+.carousel img {
+    min-width: 100%
+}
+
+del-btn {
+    display: inline-block
+}
+*/
+
 html {
   font-size: 14px;
 }
@@ -19,4 +72,8 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.del-btn {
+    display: inline-block
 }
