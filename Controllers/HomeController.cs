@@ -46,12 +46,12 @@ namespace MissysPastrys.Controllers
             if (response.Status is false)
             {
                 _notyf.Error(response.Message);
-                return View(response);
+                return View(model);
             }
 
             _notyf.Success(response.Message);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Privacy", "Home");
         }
 
         [RedirectIfAuthenticated]
@@ -80,11 +80,11 @@ namespace MissysPastrys.Controllers
                 new Claim(ClaimTypes.Role, user.RoleName),
             };
 
-            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             var authenticationProperties = new AuthenticationProperties();
 
-            var principal = new ClaimsPrincipal(claimIdentity);
+            var principal = new ClaimsPrincipal(claimsIdentity);
 
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authenticationProperties);
 
@@ -95,7 +95,7 @@ namespace MissysPastrys.Controllers
                 return RedirectToAction("AdminDashboard", "Home");
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Privacy", "Home");
         }
 
         public IActionResult LogOut()

@@ -29,6 +29,6 @@ namespace MissysPastrys.Models.Pastry
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "One or more categories need to be selected")]
-        public List<string> CategoryIds { get; set; } = new List<string>();
+        public List<string> CategoryIds { get; set; }
     }
 }
