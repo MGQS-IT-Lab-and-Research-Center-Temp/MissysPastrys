@@ -1,0 +1,39 @@
+﻿@model List<MissysPastrys.Models.Review.ReviewViewModel>
+
+@{
+    ViewData["Title"] = "Review List";
+    int count = 1;
+}
+
+@await Html.PartialAsync("_ListAlert", Model)
+
+@if (Model is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Review Text</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@count</th>
+                    <td scope="row">@item.ReviewText</td>
+                    <td scope="row">@item.Rating</td>
+                    <td scope="row">
+                        <div class="btn-group">
+                            <a asp-controller="Review" asp-action="GetReviewDetail" asp-route-id="@item.Id" class="btn btn-primary">View</a>
+                        </div>
+                    </td>
+                </tr>
+                count++;
+            }
+        </tbody>
+    </table>
+}

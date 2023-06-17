@@ -1,0 +1,45 @@
+﻿@model MissysPastrys.Models.Review.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Review Detail";
+}
+
+@if (Model is not null)
+{
+        <dl class="row">
+                    <dt class="col-sm-4">
+                        User Id:
+                    </dt>
+
+                    <dd class="col-sm-8">
+            @Model.UserId
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        Description:
+                    </dt>
+
+                    <dd class="col-sm-8">
+            @Model.ReviewText
+                    </dd>
+
+                    <dt class="col-sm-4">
+                        Rating:
+                    </dt>
+
+                    <dd class="col-sm-8">
+            @Model.Rating
+                    </dd>
+        </dl>
+       <br />
+
+       <div class="btn-group">
+            <a asp-controller="Review" asp-action="UpdateReview" asp-route-id="@Model.Id" class="btn btn-success">Update</a>
+            &nbsp;
+            <form asp-action="DeleteReview" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            &nbsp;
+            <a asp-controller="Pastry" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-success">Go back to pastry list</a>
+        </div>
+}

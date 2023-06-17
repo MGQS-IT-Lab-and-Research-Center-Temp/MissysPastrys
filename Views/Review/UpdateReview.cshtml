@@ -1,0 +1,32 @@
+﻿@model MissysPastrys.Models.Review.UpdateReviewViewModel
+
+@{
+    ViewData["Title"] = "Edit Review";
+}
+
+<div class="body">
+
+	<div class="row">
+		<div class="col-md-6">
+			<form asp-action="UpdateReview">
+
+				<div class="col-md-12 mb-3">
+					<label class="control-label mb-1">Review Text:</label>
+					<textarea asp-for="ReviewText" type="text" class="form-control"></textarea>
+					<span asp-validation-for="ReviewText" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-12 mb-3">
+					<label class="control-label mb-1">Rating:</label>
+					<textarea asp-for="Rating" type="text" class="form-control"></textarea>
+					<span asp-validation-for="Rating" class="text-danger"></span>
+				</div>
+
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">Update</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

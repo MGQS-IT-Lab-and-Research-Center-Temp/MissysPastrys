@@ -1,0 +1,37 @@
+﻿@model MissysPastrys.Models.Review.CreateReviewViewModel
+
+@{
+    ViewData["Title"] = "Write a Review";
+    var pastryId = ViewContext.RouteData.Values["id"];
+}
+
+<div class="body">
+
+    @await Html.PartialAsync("_NoModelAlert")
+
+    <div class="row">
+        <div class="col-md-6">
+            <hr />
+            <form asp-action="CreateReview">
+                <input type="hidden" class="form-control" asp-for="PastryId" value="@pastryId" />
+
+                <div class="col-md-12 mb-2">
+                    <label for="ReviewText" class="form-label">Review:</label>
+                    <textarea class="form-control" placeholder="Enter review" asp-for="ReviewText"></textarea>
+                    <span asp-validation-for="ReviewText" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-12 mb-2">
+                    <label for="Rating" class="form-label">Rating:</label>
+                    <textarea class="form-control" placeholder="Enter rating from 1 - 5" asp-for="Rating"></textarea>
+                    <span asp-validation-for="Rating" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Create Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
