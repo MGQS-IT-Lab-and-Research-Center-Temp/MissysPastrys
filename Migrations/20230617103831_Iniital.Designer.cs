@@ -11,8 +11,8 @@ using MissysPastrys.Context;
 namespace MissysPastrys.Migrations
 {
     [DbContext(typeof(MissysPastrysDbContext))]
-    [Migration("20230614135243_Initial")]
-    partial class Initial
+    [Migration("20230617103831_Iniital")]
+    partial class Iniital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,14 +33,12 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
@@ -51,7 +49,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -68,7 +65,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -89,11 +85,9 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ShoppingCartId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<short>("Status")
@@ -116,7 +110,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -141,7 +134,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("OrderDeliveryDate")
@@ -191,7 +183,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -204,15 +195,12 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("OrderId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("PastryId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<decimal>("SellingPrice")
@@ -236,18 +224,15 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ImageThumbnailUrl")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<bool>("IsDeleted")
@@ -261,7 +246,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -299,7 +283,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -312,7 +295,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("PastryId", "CategoryId");
@@ -328,7 +310,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -341,7 +322,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PastryId")
@@ -352,7 +332,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<string>("ReviewText")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("text");
 
@@ -375,14 +354,12 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
@@ -393,7 +370,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("RoleName")
@@ -428,7 +404,6 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
@@ -441,11 +416,9 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PastryId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ShoppingCartId")
@@ -467,14 +440,12 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("HashSalt")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
@@ -484,11 +455,9 @@ namespace MissysPastrys.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("RoleId")
@@ -511,9 +480,7 @@ namespace MissysPastrys.Migrations
                 {
                     b.HasOne("MissysPastrys.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany()
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ShoppingCartId");
 
                     b.Navigation("ShoppingCart");
                 });
@@ -533,15 +500,11 @@ namespace MissysPastrys.Migrations
                 {
                     b.HasOne("MissysPastrys.Entities.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("MissysPastrys.Entities.Pastry", "Pastry")
                         .WithMany()
-                        .HasForeignKey("PastryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PastryId");
 
                     b.Navigation("Order");
 
@@ -601,9 +564,7 @@ namespace MissysPastrys.Migrations
                 {
                     b.HasOne("MissysPastrys.Entities.Pastry", "Pastry")
                         .WithMany()
-                        .HasForeignKey("PastryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PastryId");
 
                     b.HasOne("MissysPastrys.Entities.ShoppingCart", "ShoppingCart")
                         .WithMany("ShoppingCartItems")
