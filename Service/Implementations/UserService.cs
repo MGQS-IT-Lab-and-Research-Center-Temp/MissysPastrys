@@ -97,7 +97,8 @@ namespace MissysPastrys.Service.Implementations
                 response.User = new UserViewModel
                 {
                     Id = user.Id,
-                    UserName = user.UserName
+                    UserName = user.UserName,
+                    RoleName = user.Role.RoleName
                 };
                 response.Message = $"Welcome {user.UserName}";
                 response.Status = true;
