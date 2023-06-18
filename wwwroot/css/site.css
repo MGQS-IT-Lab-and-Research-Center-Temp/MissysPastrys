@@ -1,4 +1,4 @@
-/*#cartButton {
+#cartButton {
     margin-right: 8px;
 }
 
@@ -49,7 +49,7 @@ a.remove.hover {
 del-btn {
     display: inline-block
 }
-*/
+
 
 html {
   font-size: 14px;
