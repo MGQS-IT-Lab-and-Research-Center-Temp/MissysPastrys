@@ -19,4 +19,9 @@
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\pastry\image\" />
+    <Folder Include="wwwroot\pastry\thumbnail\" />
+  </ItemGroup>
+
 </Project>

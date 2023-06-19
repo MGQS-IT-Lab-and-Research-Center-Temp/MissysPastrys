@@ -12,6 +12,7 @@ namespace MissysPastrys.Models.Pastry
         public string ShortDescription { get; set; }
 
         [Required]
+        public IFormFile ImageThumbnail { get; set; }
         public string ImageThumbnailUrl { get; set; }
 
         [Required(ErrorMessage = "Cost price is required!")]
@@ -26,6 +27,7 @@ namespace MissysPastrys.Models.Pastry
         public string LongDescription { get; set; }
 
         [Required]
+        public IFormFile Image { get; set; }
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "One or more categories need to be selected")]

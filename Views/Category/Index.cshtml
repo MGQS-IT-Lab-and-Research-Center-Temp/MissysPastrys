@@ -30,6 +30,8 @@
                     <td>
                         <div class="btn-group">
                             <a asp-controller="Pastry" asp-action="GetPastryByCategoryId" asp-route-id ="@item.Id" class="btn btn-primary">View Pastries</a>
+
+                            <a asp-controller="Category" asp-action="GetCategory" asp-route-id ="@item.Id" class="btn btn-primary">View Category</a>
                         </div>
                     </td>
                 </tr>

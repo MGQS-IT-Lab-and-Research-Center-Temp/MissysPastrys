@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MissysPastrys.Models.Pastry.PastryViewModel>
+@{
+    ViewData["Title"] = "All Pastries";
+}
+
+<div>
+    <a asp-controller="Pastry" asp-action="CreatePastry" class="btn btn-outline-primary">Create New Pastry</a>
+</div>
+
+@await Html.PartialAsync("_ListAlert", Model)
+
+@if (Model is not null)
+{
+    <div class="container">
+    <h3 class="display-4">All Pastries</h3>
+    <div class="row">
+        @foreach (var pastry in Model)
+        {
+            <div class="col-md-4">
+                <partial name="_PastryThumbnail" model="@pastry"></partial>
+            </div>
+        }
+    </div>
+</div>
+}
