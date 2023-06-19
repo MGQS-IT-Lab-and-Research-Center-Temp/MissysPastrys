@@ -138,7 +138,7 @@ namespace MissysPastrys.Controllers
 
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
 
-            file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
 
             return "/" + folderPath;
         }
