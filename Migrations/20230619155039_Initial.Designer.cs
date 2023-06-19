@@ -11,8 +11,8 @@ using MissysPastrys.Context;
 namespace MissysPastrys.Migrations
 {
     [DbContext(typeof(MissysPastrysDbContext))]
-    [Migration("20230619152644_Secondo")]
-    partial class Secondo
+    [Migration("20230619155039_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
