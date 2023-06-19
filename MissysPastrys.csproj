@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Pastry\UpdatePastry.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
@@ -22,6 +26,18 @@
   <ItemGroup>
     <Folder Include="wwwroot\pastry\image\" />
     <Folder Include="wwwroot\pastry\thumbnail\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Pastry\UpdatePastry.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Pastry\UpdatePastry.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Pastry\UpdatePastry.cshtml" />
   </ItemGroup>
 
 </Project>
