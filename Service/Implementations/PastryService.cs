@@ -11,11 +11,14 @@ namespace MissysPastrys.Service.Implementations
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public PastryService(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork)
+        public PastryService(IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork,
+            IWebHostEnvironment webHostEnvironment)
         {
             _httpContextAccessor = httpContextAccessor;
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public BaseResponseModel CreatePastry(CreatePastryViewModel request)
@@ -34,6 +37,18 @@ namespace MissysPastrys.Service.Implementations
             {
                 response.Message = "Pastry name is required!";
                 return response;
+            }
+
+            if (request.Image is not null)
+            {
+                string pastryFolder = "pastry/image/";
+                request.ImageUrl = UploadImage(pastryFolder, request.Image);
+            }
+
+            if (request.ImageThumbnail is not null)
+            {
+                string pastryThumbnailFolder = "pastry/thumbnail/";
+                request.ImageThumbnailUrl = UploadImage(pastryThumbnailFolder, request.ImageThumbnail);
             }
 
             var pastry = new Pastry
@@ -291,6 +306,17 @@ namespace MissysPastrys.Service.Implementations
                 response.Message = $"Could not update pastry: {ex.Message}";
                 return response;
             }
+        }
+
+        private string UploadImage(string folderPath, IFormFile file)
+        {
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+
+            file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            return "/" + folderPath;
         }
     }
 }
