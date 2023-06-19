@@ -39,11 +39,11 @@ namespace MissysPastrys.Service.Implementations
                 return response;
             }
 
-            //if (request.Image is not null)
-            //{
-            //    string pastryFolder = "pastry/image/";
-            //    request.ImageUrl = UploadImage(pastryFolder, request.Image);
-            //}
+            if (request.Image is not null)
+            {
+                string pastryFolder = "pastry/image/";
+                request.ImageUrl = UploadImage(pastryFolder, request.Image);
+            }
 
             if (request.ImageThumbnail is not null)
             {
@@ -58,8 +58,8 @@ namespace MissysPastrys.Service.Implementations
                 ImageThumbnailUrl = request.ImageThumbnailUrl,
                 SellingPrice = request.SellingPrice,
                 CostPrice = request.CostPrice,
-                //LongDescription = request.LongDescription,
-                //ImageUrl = request.ImageUrl,
+                LongDescription = request.LongDescription,
+                ImageUrl = request.ImageUrl,
                 CreatedBy = createdBy
             };
 

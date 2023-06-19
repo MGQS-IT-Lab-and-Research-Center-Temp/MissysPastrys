@@ -23,12 +23,12 @@ namespace MissysPastrys.Models.Pastry
         [DataType(DataType.Currency)]
         public decimal SellingPrice { get; set; }
 
-        //[Required(ErrorMessage = "Pastry long description is required!")]
-        //public string LongDescription { get; set; }
+        [Required(ErrorMessage = "Pastry long description is required!")]
+        public string LongDescription { get; set; }
 
-        //[Required]
-        //public IFormFile Image { get; set; }
-        //public string ImageUrl { get; set; }
+        [Required]
+        public IFormFile Image { get; set; }
+        public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "One or more categories need to be selected")]
         public List<string> CategoryIds { get; set; }
