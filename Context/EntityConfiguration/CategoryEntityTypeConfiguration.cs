@@ -21,10 +21,6 @@ namespace MissysPastrys.Context.EntityConfiguration
 
             builder.Property(c => c.Description)
                 .HasMaxLength(500);
-
-            builder.HasMany(c => c.PastryCategories)
-                .WithOne(pc => pc.Category)
-                .IsRequired();
         }
     }
 }

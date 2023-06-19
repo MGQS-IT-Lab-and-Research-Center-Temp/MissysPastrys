@@ -13,8 +13,8 @@ namespace MissysPastrys.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public PastryController(IPastryService pastryService, 
-            INotyfService notyfService, 
+        public PastryController(IPastryService pastryService,
+            INotyfService notyfService,
             ICategoryService categoryService,
             IWebHostEnvironment webHostEnvironment)
         {
@@ -52,6 +52,10 @@ namespace MissysPastrys.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult CreatePastry()
         {
+            ViewBag.Categories = _categoryService.SelectCategories();
+            ViewData["Message"] = "";
+            ViewData["Status"] = false;
+
             return View();
         }
 
@@ -87,6 +91,47 @@ namespace MissysPastrys.Controllers
             return RedirectToAction("Index", "Pastry");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdatePastry(string id)
+        {
+            var response = _pastryService.GetPastry(id);
+
+            return View(response.Pastry);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public IActionResult UpdatePastry(UpdatePastryViewModel request, string id)
+        {
+            var response = _pastryService.UpdatePastry(request, id);
+            
+            if (response.Status is false)
+            {
+                _notyf.Error(response.Message);
+                return RedirectToAction("Index", "Home");
+            }
+
+            _notyf.Success(response.Message);
+
+            return RedirectToAction("Index", "Pastry");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public IActionResult DeletePastry([FromRoute] string id)
+        {
+            var response = _pastryService.DeletePastry(id);
+
+            if (response.Status is false)
+            {
+                _notyf.Error(response.Message);
+                return View();
+            }
+
+            _notyf.Success(response.Message);
+
+            return RedirectToAction("Index", "Pastry");
+        }
         private async Task<string> UploadImage(string folderPath, IFormFile file)
         {
             folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
