@@ -58,7 +58,7 @@ namespace MissysPastrys.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreatePastry(CreatePastryViewModel request)
+        public IActionResult CreatePastry(CreatePastryViewModel request)
         {
             var response = _pastryService.CreatePastry(request);
 
