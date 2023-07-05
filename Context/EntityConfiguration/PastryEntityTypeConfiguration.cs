@@ -47,8 +47,7 @@ namespace MissysPastrys.Context.EntityConfiguration
 
             builder.HasOne(p => p.Order)
                 .WithMany(o => o.Pastries)
-                .HasForeignKey(p => p.OrderId)
-                .IsRequired();
+                .HasForeignKey(p => p.OrderId);
         }
     }
 }
