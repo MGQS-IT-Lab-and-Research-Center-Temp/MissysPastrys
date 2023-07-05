@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MissysPastrys.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Primo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -159,7 +159,6 @@ namespace MissysPastrys.Migrations
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     ShortDescription = table.Column<string>(type: "text", nullable: false),
-                    ImageThumbnailUrl = table.Column<string>(type: "varchar(255)", nullable: true),
                     LongDescription = table.Column<string>(type: "text", nullable: false),
                     ImageUrl = table.Column<string>(type: "varchar(255)", nullable: true),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

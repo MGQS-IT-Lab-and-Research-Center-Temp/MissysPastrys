@@ -11,8 +11,8 @@ using MissysPastrys.Context;
 namespace MissysPastrys.Migrations
 {
     [DbContext(typeof(MissysPastrysDbContext))]
-    [Migration("20230619155039_Initial")]
-    partial class Initial
+    [Migration("20230705213205_Primo")]
+    partial class Primo
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,9 +228,6 @@ namespace MissysPastrys.Migrations
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("ImageThumbnailUrl")
-                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("varchar(255)");

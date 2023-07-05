@@ -226,9 +226,6 @@ namespace MissysPastrys.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("ImageThumbnailUrl")
-                        .HasColumnType("varchar(255)");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("varchar(255)");
 
