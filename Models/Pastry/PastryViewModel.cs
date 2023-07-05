@@ -10,8 +10,6 @@ namespace MissysPastrys.Models.Pastry
         public IFormFile Image { get; set; }
         public string ImageUrl { get; set; }
         public string ShortDescription { get; set; }
-        public IFormFile ImageThumbnail { get; set; }
-        public string ImageThumbnailUrl { get; set; }
         public decimal SellingPrice { get; set; }
         //public List<string> Categories { get; set; } = new List<string>();
         public List<ReviewViewModel> Reviews { get; set; } 

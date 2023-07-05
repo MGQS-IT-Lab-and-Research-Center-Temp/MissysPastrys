@@ -11,10 +11,6 @@ namespace MissysPastrys.Models.Pastry
         [Required(ErrorMessage = "Pastry short description is required!")]
         public string ShortDescription { get; set; }
 
-        [Required]
-        public IFormFile ImageThumbnail { get; set; }
-        public string ImageThumbnailUrl { get; set; }
-
         [Required(ErrorMessage = "Cost price is required!")]
         [DataType(DataType.Currency)]
         public decimal CostPrice { get; set; }

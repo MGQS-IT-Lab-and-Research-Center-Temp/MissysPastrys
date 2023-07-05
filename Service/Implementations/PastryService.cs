@@ -45,17 +45,10 @@ namespace MissysPastrys.Service.Implementations
                 request.ImageUrl = UploadImage(pastryFolder, request.Image);
             }
 
-            if (request.ImageThumbnail is not null)
-            {
-                string pastryThumbnailFolder = "pastry/thumbnail/";
-                request.ImageThumbnailUrl = UploadImage(pastryThumbnailFolder, request.ImageThumbnail);
-            }
-
             var pastry = new Pastry
             {
                 Name = request.Name,
                 ShortDescription = request.ShortDescription,
-                ImageThumbnailUrl = request.ImageThumbnailUrl,
                 SellingPrice = request.SellingPrice,
                 CostPrice = request.CostPrice,
                 LongDescription = request.LongDescription,
@@ -151,7 +144,7 @@ namespace MissysPastrys.Service.Implementations
                         Id = pastry.Id,
                         Name = pastry.Name,
                         ShortDescription = pastry.ShortDescription,
-                        ImageThumbnailUrl = pastry.ImageThumbnailUrl,
+                        ImageUrl = pastry.ImageUrl,
                         SellingPrice = pastry.SellingPrice
                     }).ToList();
 
@@ -189,7 +182,7 @@ namespace MissysPastrys.Service.Implementations
                         Name = pastry.Name,
                         ShortDescription = pastry.ShortDescription,
                         SellingPrice = pastry.SellingPrice,
-                        ImageThumbnailUrl = pastry.ImageThumbnailUrl
+                        ImageUrl = pastry.ImageUrl
                     }).ToList();
             }
             catch (Exception ex)
@@ -224,7 +217,7 @@ namespace MissysPastrys.Service.Implementations
                                         {
                                             Id = pastry.Id,
                                             Name = pastry.Pastry.Name,
-                                            ImageThumbnailUrl = pastry.Pastry.ImageThumbnailUrl,
+                                            ImageUrl = pastry.Pastry.ImageUrl,
                                             SellingPrice = pastry.Pastry.SellingPrice,
                                             ShortDescription = pastry.Pastry.ShortDescription
                                         }).ToList();
@@ -287,7 +280,6 @@ namespace MissysPastrys.Service.Implementations
             pastry.LongDescription = request.LongDescription;
             pastry.ImageUrl = request.ImageUrl;
             pastry.ShortDescription = request.ShortDescription;
-            pastry.ImageThumbnailUrl = request.ImageThumbnailUrl;
             pastry.CostPrice = request.CostPrice;
             pastry.SellingPrice = request.SellingPrice;
             pastry.ModifiedBy = modifiedBy;

@@ -1,7 +1,7 @@
 ﻿@model MissysPastrys.Models.Pastry.PastryViewModel
 
     <div class="card mb-4 shadow-sm">
-        <img src="@(string.IsNullOrEmpty(Model.ImageThumbnailUrl) ? "/Images/noimage.png" : Model.ImageThumbnailUrl) class="img-thumbnail" />
+        <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? "/Images/noimage.png" : Model.ImageUrl) class="img-thumbnail" />
         <div class="card-body">
             <h3 class="card-title">@(string.IsNullOrEmpty(Model.Name) ? "Name is not available" : Model.Name)</h3>
             <p class="card-text">@(string.IsNullOrEmpty(Model.ShortDescription) ? "Short description is not available" : Model.ShortDescription)</p>
@@ -17,7 +17,7 @@
 
     @*<div class="col-sm-4 col-lg-4 col-md-4">
         <div class="img-thumbnail">
-            <img src="@Model.ImageThumbnailUrl" alt="" />
+            <img src="@Model.ImageUrl" alt="" />
             <div class="caption">
                 <h3 class="pull-right">@Model.SellingPrice.ToString("c")</h3>
                 <h3>

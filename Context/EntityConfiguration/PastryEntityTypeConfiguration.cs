@@ -37,9 +37,6 @@ namespace MissysPastrys.Context.EntityConfiguration
                 .HasColumnType("text")
                 .IsRequired();
 
-            builder.Property(p => p.ImageThumbnailUrl)
-                .HasColumnType("varchar(255)");
-
             builder.HasMany(p => p.Reviews)
                 .WithOne(r => r.Pastry)
                 .IsRequired();
