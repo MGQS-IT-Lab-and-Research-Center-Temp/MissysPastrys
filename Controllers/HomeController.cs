@@ -51,7 +51,7 @@ namespace MissysPastrys.Controllers
 
             _notyf.Success(response.Message);
 
-            return RedirectToAction("Privacy", "Home");
+            return RedirectToAction("Login", "Home");
         }
 
         [RedirectIfAuthenticated]
