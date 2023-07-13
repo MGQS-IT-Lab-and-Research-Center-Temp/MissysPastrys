@@ -17,6 +17,7 @@ namespace MissysPastrys.Repository.Implementations
             var pastries = _context.Pastries
                 .Include(p => p.Reviews)
                 .ThenInclude(r => r.User)
+                .Include(p => p.ImageUrl)
                 .ToList();
 
             return pastries;
@@ -26,7 +27,8 @@ namespace MissysPastrys.Repository.Implementations
         {
 
             var pastries = _context.Pastries
-                .Where(expression)
+               .Where(expression)
+               .Include(p => p.ImageUrl)
                .Include(p => p.Reviews)
                .ThenInclude(r => r.User)
                .ToList();
@@ -39,6 +41,7 @@ namespace MissysPastrys.Repository.Implementations
             var pastry = _context.Pastries
                 .Include(p => p.Reviews)
                 .ThenInclude(c => c.User)
+                .Include(p => p.ImageUrl)
                 .SingleOrDefault(expression);
 
             return pastry;
@@ -50,8 +53,6 @@ namespace MissysPastrys.Repository.Implementations
             var pastries = _context.PastryCategories
                 .Include(c => c.Category)
                 .Include(p => p.Pastry)
-                .ThenInclude(p => p.Reviews)
-                .ThenInclude(c => c.User)
                 .Where(p => p.CategoryId.Equals(categoryId))
                 .ToList();
 

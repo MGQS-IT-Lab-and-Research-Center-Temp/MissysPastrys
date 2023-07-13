@@ -11,7 +11,7 @@ using MissysPastrys.Context;
 namespace MissysPastrys.Migrations
 {
     [DbContext(typeof(MissysPastrysDbContext))]
-    [Migration("20230705213205_Primo")]
+    [Migration("20230711111446_Primo")]
     partial class Primo
     {
         /// <inheritdoc />

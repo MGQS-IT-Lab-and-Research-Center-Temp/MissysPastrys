@@ -23,8 +23,7 @@ namespace MissysPastrys.Context.EntityConfiguration
             builder.Property(p => p.SellingPrice)
                 .IsRequired();
 
-            builder.Property(p => p.CostPrice)
-                .IsRequired();
+            builder.Property(p => p.CostPrice);
 
             builder.Property(p => p.LongDescription)
                 .HasColumnType("text")
@@ -38,8 +37,7 @@ namespace MissysPastrys.Context.EntityConfiguration
                 .IsRequired();
 
             builder.HasMany(p => p.Reviews)
-                .WithOne(r => r.Pastry)
-                .IsRequired();
+                .WithOne(r => r.Pastry);
 
             builder.HasMany(p => p.PastryCategories)
                 .WithOne(pc => pc.Pastry)

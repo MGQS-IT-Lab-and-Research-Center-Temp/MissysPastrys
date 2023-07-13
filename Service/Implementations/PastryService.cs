@@ -4,6 +4,8 @@ using MissysPastrys.Models;
 using MissysPastrys.Models.Pastry;
 using MissysPastrys.Repository.Interfaces;
 using MissysPastrys.Service.Interfaces;
+using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace MissysPastrys.Service.Implementations
 {
@@ -167,7 +169,12 @@ namespace MissysPastrys.Service.Implementations
 
             try
             {
-                var pastries = _unitOfWork.Pastries.GetAll(p => p.IsDeleted == false);
+                var IsInRole = _httpContextAccessor.HttpContext.User.IsInRole("Admin");
+                var userIdClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+
+                Expression<Func<Pastry, bool>> expression = p => p.Order.User.Orders.Where(o => o.User.Id == userIdClaim).Any(p => p.IsDeleted == false);
+
+                var pastries = IsInRole ? _unitOfWork.Pastries.GetPastries() : _unitOfWork.Pastries.GetPastries(expression);
 
                 if (pastries is null || pastries.Count == 0)
                 {
@@ -175,8 +182,9 @@ namespace MissysPastrys.Service.Implementations
                     return response;
                 }
 
-                response.Pastry = pastries.Select(
-                    pastry => new PastryViewModel
+                response.Pastry = pastries
+                    .Where(p => p.IsDeleted == false)
+                    .Select(pastry => new PastryViewModel
                     {
                         Id = pastry.Id,
                         Name = pastry.Name,
