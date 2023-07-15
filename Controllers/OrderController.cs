@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MissysPastrys.Entities;
 using MissysPastrys.Models.Order;
@@ -19,6 +20,14 @@ namespace MissysPastrys.Controllers
             _notyf = notyfService;
         }
 
+        [Authorize]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
         public IActionResult Checkout(Order order)
         {
             var items = _shoppingCartService.GetShoppingCartItems();
@@ -34,6 +43,7 @@ namespace MissysPastrys.Controllers
             {
                 _orderService.CreateOrder(order);
                 _shoppingCartService.ClearCart();
+
                 return RedirectToAction("CheckoutComplete");
             }
 

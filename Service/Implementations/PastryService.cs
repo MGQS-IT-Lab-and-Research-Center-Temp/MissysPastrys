@@ -169,12 +169,7 @@ namespace MissysPastrys.Service.Implementations
 
             try
             {
-                var IsInRole = _httpContextAccessor.HttpContext.User.IsInRole("Admin");
-                var userIdClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-
-                Expression<Func<Pastry, bool>> expression = p => p.Order.User.Orders.Where(o => o.User.Id == userIdClaim).Any(p => p.IsDeleted == false);
-
-                var pastries = IsInRole ? _unitOfWork.Pastries.GetPastries() : _unitOfWork.Pastries.GetPastries(expression);
+                var pastries = _unitOfWork.Pastries.GetPastries(p => p.IsDeleted == false);
 
                 if (pastries is null || pastries.Count == 0)
                 {

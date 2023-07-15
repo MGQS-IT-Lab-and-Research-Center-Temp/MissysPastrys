@@ -21,7 +21,7 @@ namespace MissysPastrys.Controllers
             _categoryService = categoryService;
         }
 
-        //[Route("allPastries")]
+        [Route("allPastries")]
         public IActionResult Index()
         {
             var response = _pastryService.GetAllPastry();
@@ -31,6 +31,7 @@ namespace MissysPastrys.Controllers
             return View(response.Pastry);
         }
 
+        [Route("pastry-details/{id:int:min(1)}", Name = "pastryDetailsRoute")]
         public IActionResult GetPastry(string id)
         {
             var response = _pastryService.GetPastry(id);

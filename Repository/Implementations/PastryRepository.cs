@@ -15,9 +15,9 @@ namespace MissysPastrys.Repository.Implementations
         public List<Pastry> GetPastries()
         {
             var pastries = _context.Pastries
+                .Include(p => p.ImageUrl)
                 .Include(p => p.Reviews)
                 .ThenInclude(r => r.User)
-                .Include(p => p.ImageUrl)
                 .ToList();
 
             return pastries;
@@ -42,6 +42,7 @@ namespace MissysPastrys.Repository.Implementations
                 .Include(p => p.Reviews)
                 .ThenInclude(c => c.User)
                 .Include(p => p.ImageUrl)
+                .Include(p => p.LongDescription)
                 .SingleOrDefault(expression);
 
             return pastry;
